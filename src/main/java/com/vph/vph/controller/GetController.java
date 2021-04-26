@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author tcg
  * @date 2021/4/26
  */
-@Api
+@Api(tags = "查询接口")
 @RestController
 @RequestMapping("/vph")
 public class GetController {
