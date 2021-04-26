@@ -1,18 +1,12 @@
 package com.vph.vph.service;
 
-import com.vph.vph.entity.Case;
-import com.vph.vph.entity.Disease;
-import com.vph.vph.entity.Info;
-import com.vph.vph.entity.Office;
+import com.vph.vph.entity.*;
 import com.vph.vph.mapper.GetMapper;
 import com.vph.vph.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author tcg
@@ -84,6 +78,29 @@ public class GetService {
             List<Office> offices = getMapper.getAllOffices();
             Map<String, Object> data = new HashMap<>(1);
             data.put("data", offices);
+            result = Result.retOk(data);
+        } catch (Exception e) {
+            result = Result.retFail(e.getMessage());
+        }
+        return result;
+    }
+
+    public Result getTest() {
+        Result result;
+        try {
+            List<Problem> problems = getMapper.getAllProblems();
+            Collections.shuffle(problems);
+            List<Problem> ret = new ArrayList<>();
+            for (int i = 0; i < 10 && i < problems.size(); ++i) {
+                problems.get(i).setScore(10);
+                ret.add(problems.get(i));
+            }
+            Map<String, Object> data = new HashMap<>(1);
+            Test test = new Test();
+            test.setScore(100);
+            test.setTime(30);
+            test.setProblems(ret);
+            data.put("data", test);
             result = Result.retOk(data);
         } catch (Exception e) {
             result = Result.retFail(e.getMessage());

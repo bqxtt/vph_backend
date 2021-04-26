@@ -52,4 +52,11 @@ public class GetController {
         Result result = getService.getAllOffices();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @ApiOperation("获取一张试卷")
+    @GetMapping("/test")
+    public ResponseEntity<Result> getTest() {
+        Result result = getService.getTest();
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

@@ -1,9 +1,6 @@
 package com.vph.vph.mapper;
 
-import com.vph.vph.entity.Case;
-import com.vph.vph.entity.Disease;
-import com.vph.vph.entity.Info;
-import com.vph.vph.entity.Office;
+import com.vph.vph.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -48,4 +45,12 @@ public interface GetMapper {
      */
     @Select("select * from offices")
     List<Office> getAllOffices();
+
+    /**
+     * problems
+     *
+     * @return problems
+     */
+    @Select("select * from problems")
+    List<Problem> getAllProblems();
 }
